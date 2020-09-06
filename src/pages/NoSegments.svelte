@@ -5,7 +5,7 @@
 
   // Regexp from https://webapps.stackexchange.com/a/101153
   const YT_VIDEOID_REGEXP = new RegExp('^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]$');
-  let category = '';
+  let categories = [];
   let videoID = '';
   let videoIDValid = false;
   let status = STATUS.IDLE;
@@ -30,13 +30,11 @@
   }
 
   async function doAction() {
-    console.log('Submitting', videoID, category, $ConfigStore.privateUUID);
-    return;
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
     postData.set('videoID', videoID);
     postData.set('userID', $ConfigStore.privateUUID);
-    postData.set('category', category);
+    postData.set('categories', JSON.stringify(categories));
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/noSegments?${postData}`,
       {
@@ -48,7 +46,7 @@
     if (result === 200) {
       status = STATUS.SUCCESS;
       videoID = '';
-      category = '';
+      categories = [];
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
@@ -75,19 +73,23 @@
             placeholder="VideoID or URL..." />
         </div>
         <div>
-          <label for="category">Category:</label><br />
-          <select id="category" bind:value={category}>
-            <option value="" selected>-- Select a option --</option>
-            {#each categoryList as categoryId, index}
-              <option value={categoryId}>{categoryId}</option>
-            {/each}
-          </select>
+          <div>Categories:</div>
+          {#each categoryList as categoryId, index}
+            <div class="category-option">
+              <input
+                id={'category_' + categoryId}
+                type="checkbox"
+                bind:group={categories}
+                value={categoryId} />
+              <label for={'category_' + categoryId}>{categoryId}</label>
+            </div>
+          {/each}
         </div>
 
         <div class="actions">
           <button
             on:click={doAction}
-            disabled={!videoIDValid || category === '' || status === STATUS.WORKING}>Submit</button>
+            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Submit</button>
         </div>
       </div>
     </fieldset>
@@ -109,5 +111,8 @@
     height: 100%;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.3);
+  }
+  .category-option {
+    margin-left: 16px;
   }
 </style>

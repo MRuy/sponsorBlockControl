@@ -15,34 +15,42 @@
     {
       name: 'Home',
       component: Home,
+      uuidRequired: false,
     },
     {
       name: 'Username',
       component: PageUsername,
+      uuidRequired: true,
     },
     {
       name: 'Stats',
       component: PageGetTotalStats,
+      uuidRequired: false,
     },
     {
       name: 'Leaderboard',
       component: PageGetTopUsers,
+      uuidRequired: false,
     },
     {
       name: 'Vote on segment',
       component: PageVoteOnSponsorTime,
+      uuidRequired: true,
     },
     {
       name: 'No segments',
       component: NoSegments,
+      uuidRequired: true,
     },
     {
       name: 'Add/Remove Shadow ban',
       component: PageShadowBanUser,
+      uuidRequired: true,
     },
     {
       name: 'Add/Remove VIP',
       component: AddUserAsVIP,
+      uuidRequired: true,
     },
   ];
   let selectedComponent = componentList[0].component;

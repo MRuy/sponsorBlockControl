@@ -1,11 +1,13 @@
 <script>
   import {onMount} from 'svelte';
   import {ConfigStore, CacheStore} from '../store.js';
+  import {isValidUserUUID} from '../utils.js';
   import Status, {STATUS} from '../components/Status.svelte';
 
   let userName = '';
   let targetUsername = '';
   let targetUUID = '';
+  let targetUUIDValid = false;
   let status = STATUS.IDLE;
   const CACHE_TIME = 600000; // 10 minutes
 
@@ -92,6 +94,9 @@
         <input
           type="text"
           bind:value={targetUUID}
+          on:input={(_) => {
+            targetUUIDValid = isValidUserUUID(targetUUID);
+          }}
           placeholder="Target UUID..." />
         <input
           type="text"
@@ -101,7 +106,7 @@
           on:click={(_) => {
             setUsername(targetUUID, targetUsername, $ConfigStore.privateUUID);
           }}
-          disabled={targetUUID.length != 64 || targetUsername.length == 0}>Update</button>
+          disabled={!targetUUIDValid || targetUsername.length === 0}>Update</button>
       </fieldset>
     </div>
 

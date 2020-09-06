@@ -1,9 +1,11 @@
 <script>
   import {ConfigStore} from '../store.js';
+  import {isValidSegmentUUID} from '../utils.js';
   import Status, {STATUS} from '../components/Status.svelte';
 
   let status = STATUS.IDLE;
   let uuid = '';
+  let uuidValid = false;
 
   async function doVote(uuid, voteType = 0) {
     status = STATUS.WORKING;
@@ -43,7 +45,10 @@
           type="text"
           size="64"
           bind:value={uuid}
-          pattern="^[a-z0-9]{64}$"
+          pattern="[a-f0-9]{'{64}'}"
+          on:input={(_) => {
+            uuidValid = isValidSegmentUUID(uuid);
+          }}
           placeholder="Segment UUID ..."
           disabled={status === STATUS.WORKING} />
       </div>
@@ -52,12 +57,12 @@
           on:click={(_) => {
             doVote(uuid, 0);
           }}
-          disabled={status === STATUS.WORKING || uuid.length != 64 || status === STATUS.WORKING}>Downvote</button>
+          disabled={status === STATUS.WORKING || !uuidValid || status === STATUS.WORKING}>Downvote</button>
         <button
           on:click={(_) => {
             doVote(uuid, 1);
           }}
-          disabled={status === STATUS.WORKING || uuid.length != 64 || status === STATUS.WORKING}>Upvote</button>
+          disabled={status === STATUS.WORKING || !uuidValid || status === STATUS.WORKING}>Upvote</button>
       </div>
     </fieldset>
 

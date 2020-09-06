@@ -1,4 +1,5 @@
 <script>
+  import {ConfigStore} from '../store.js';
   export let items = [];
   export let clickHandler;
   export let selected;
@@ -9,6 +10,7 @@
     <button
       type="button"
       class:active={selected === item.component}
+      disabled={item.uuidRequired === true && $ConfigStore.privateUUID === ''}
       on:click={(_) => {
         clickHandler(item.name);
       }}>
@@ -39,6 +41,9 @@
     background-color: #6c757d;
     border-color: #6c757d;
     cursor: pointer;
+  }
+  nav button:disabled {
+    opacity: 0.3;
   }
   nav button.active {
     color: #000;

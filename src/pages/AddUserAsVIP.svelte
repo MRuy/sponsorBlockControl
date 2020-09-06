@@ -1,9 +1,11 @@
 <script>
   import {ConfigStore} from '../store.js';
+  import {isValidUserUUID} from '../utils.js';
   import Status, {STATUS} from '../components/Status.svelte';
 
   let userUUID = '';
   let action = 'add';
+  let userUUIDValid = false;
   let status = STATUS.IDLE;
 
   function addVIP() {
@@ -52,17 +54,16 @@
             id="uuid"
             type="text"
             bind:value={userUUID}
+            on:input={(_) => {
+              userUUIDValid = isValidUserUUID(userUUID);
+            }}
             size="64"
             placeholder="Users UUID..." />
         </div>
 
         <div class="actions">
-          <button
-            on:click={removeVIP}
-            disabled={userUUID.length != 64}>Remove</button>
-          <button
-            on:click={addVIP}
-            disabled={userUUID.length != 64}>Add</button>
+          <button on:click={removeVIP} disabled={!userUUIDValid}>Remove</button>
+          <button on:click={addVIP} disabled={!userUUIDValid}>Add</button>
         </div>
       </div>
     </fieldset>

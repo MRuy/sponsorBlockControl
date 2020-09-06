@@ -1,9 +1,11 @@
 <script>
   import {ConfigStore} from '../store.js';
+  import {isValidUserUUID} from '../utils.js';
   import Status, {STATUS} from '../components/Status.svelte';
 
   let userUUID = '';
   let hideOldSubmissions = true;
+  let userUUIDValid = false;
   let status = STATUS.IDLE;
 
   async function doAction(action = 'ban') {
@@ -46,6 +48,9 @@
             type="text"
             bind:value={userUUID}
             size="64"
+            on:input={(_) => {
+              userUUIDValid = isValidUserUUID(userUUID);
+            }}
             placeholder="Users UUID..." />
         </div>
 
@@ -60,13 +65,13 @@
         <div class="actions">
           <button
             type="button"
-            disabled={userUUID.length != 64}
+            disabled={!userUUIDValid}
             on:click={(_) => {
               doAction('unban');
             }}>Unban</button>
           <button
             type="button"
-            disabled={userUUID.length != 64}
+            disabled={!userUUIDValid}
             on:click={(_) => {
               doAction('ban');
             }}>Ban</button>
