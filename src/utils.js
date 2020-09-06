@@ -1,7 +1,7 @@
 export const minutesReadable = (minutes, useLong = false) => {
   const years = Math.floor(minutes / 60 / 24 / 365);
   const days = Math.floor(minutes / 60 / 24) % 365;
-  const hours = Math.floor(minutes / 60) % 60;
+  const hours = Math.floor(minutes / 60) % 24;
   let str = '';
   str += `${years > 0 ? years + (useLong ? ' years ' : 'y ') : ''}`;
   str += `${days > 0 ? days + (useLong ? ' days ' : 'd ') : ''}`;

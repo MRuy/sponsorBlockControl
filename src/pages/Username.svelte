@@ -89,7 +89,7 @@
 
       <fieldset>
         <legend>
-          Change Username: <span class="viprequired">(VIP Required)</span>
+          Change Username: <span class="viprequired">(Admin Only)</span>
         </legend>
         <input
           type="text"
