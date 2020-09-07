@@ -3,10 +3,12 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
 import sveltePreprocess from 'svelte-preprocess';
 import postcssImport from 'postcss-import';
 import rimraf from 'rimraf';
+const pkg = require('./package.json');
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -87,6 +89,12 @@ export default {
 
     // ES5 to ES6
 		commonjs(),
+
+    replace({
+      delimiters: ['__', '__'],
+      pkgVersion: pkg.version,
+      pkgHomepage: pkg.homepage,
+    }),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
