@@ -31,14 +31,15 @@
 
   async function doAction() {
     status = STATUS.WORKING;
-    const postData = new URLSearchParams();
+    const postData = new FormData();
     postData.set('videoID', videoID);
     postData.set('userID', $ConfigStore.privateUUID);
     postData.set('categories', JSON.stringify(categories));
     const result = await fetch(
-      `${$ConfigStore.sponsorBlockApi}/api/noSegments?${postData}`,
+      `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
       {
         method: 'post',
+        body: postData,
       }
     ).then(function (response) {
       return response.status;
