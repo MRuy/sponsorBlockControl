@@ -1,7 +1,7 @@
 <script>
-  import {ConfigStore} from '../store.js';
-  import {isValidUserUUID} from '../utils.js';
-  import Status, {STATUS} from '../components/Status.svelte';
+  import {ConfigStore} from '@/store.js';
+  import {isValidUserUUID} from '@/utils.js';
+  import Status, {STATUS} from '@/components/Status.svelte';
 
   let userUUID = '';
   let action = 'add';

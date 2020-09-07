@@ -1,7 +1,7 @@
 <script>
-  import {categoryList} from '../config.js';
-  import {ConfigStore} from '../store.js';
-  import Status, {STATUS} from '../components/Status.svelte';
+  import {categoryList} from '@/config.js';
+  import {ConfigStore} from '@/store.js';
+  import Status, {STATUS} from '@/components/Status.svelte';
 
   // Regexp from https://webapps.stackexchange.com/a/101153
   const YT_VIDEOID_REGEXP = new RegExp('^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]$');

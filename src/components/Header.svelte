@@ -1,5 +1,6 @@
 <header>
-  <img src="favicon.png" width="64" height="64" alt="Logo" /> SponsorBlockControl <sup><a href="__pkgHomepage__">(v__pkgVersion__)</a></sup>
+  <img src="favicon.png" width="64" height="64" alt="Logo" /> SponsorBlockControl
+  <sup><a href="__pkgHomepage__">(v__pkgVersion__)</a></sup>
 </header>
 
 <style>

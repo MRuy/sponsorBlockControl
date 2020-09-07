@@ -1,3 +1,4 @@
+import path from 'path';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -5,6 +6,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import copy from 'rollup-plugin-copy';
+import alias from '@rollup/plugin-alias';
 import sveltePreprocess from 'svelte-preprocess';
 import postcssImport from 'postcss-import';
 import rimraf from 'rimraf';
@@ -94,6 +96,13 @@ export default {
       delimiters: ['__', '__'],
       pkgVersion: pkg.version,
       pkgHomepage: pkg.homepage,
+    }),
+
+    alias({
+      resolve: ['.js', '.svelte'],
+      entries: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+      ]
     }),
 
 		// In dev mode, call `npm run start` once

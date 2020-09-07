@@ -1,8 +1,8 @@
 <script>
   import {onMount} from 'svelte';
-  import {ConfigStore, CacheStore} from '../store.js';
-  import {isValidUserUUID} from '../utils.js';
-  import Status, {STATUS} from '../components/Status.svelte';
+  import {ConfigStore, CacheStore} from '@/store.js';
+  import {isValidUserUUID} from '@/utils.js';
+  import Status, {STATUS} from '@/components/Status.svelte';
 
   let userName = '';
   let targetUsername = '';

@@ -1,7 +1,7 @@
 <script>
-  import {ConfigStore, CacheStore} from '../store.js';
-  import GetSavedTimeForUser from '../components/GetSavedTimeForUser.svelte';
-  import GetViewsForUser from '../components/GetViewsForUser.svelte';
+  import {ConfigStore, CacheStore} from '@/store.js';
+  import GetSavedTimeForUser from '@/components/GetSavedTimeForUser.svelte';
+  import GetViewsForUser from '@/components/GetViewsForUser.svelte';
 
   let privateUUID = $ConfigStore.privateUUID;
   let privateUUIDGotSaved = false;

@@ -1,7 +1,7 @@
 <script>
-  import {ConfigStore} from '../store.js';
-  import {isValidSegmentUUID} from '../utils.js';
-  import Status, {STATUS} from '../components/Status.svelte';
+  import {ConfigStore} from '@/store.js';
+  import {isValidSegmentUUID} from '@/utils.js';
+  import Status, {STATUS} from '@/components/Status.svelte';
 
   let status = STATUS.IDLE;
   let uuid = '';

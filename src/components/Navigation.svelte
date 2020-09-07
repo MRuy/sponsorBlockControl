@@ -1,5 +1,5 @@
 <script>
-  import {ConfigStore} from '../store.js';
+  import {ConfigStore} from '@/store.js';
   export let items = [];
   export let clickHandler;
   export let selected;

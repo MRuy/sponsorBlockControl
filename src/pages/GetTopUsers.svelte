@@ -1,8 +1,8 @@
 <script>
   import {onMount} from 'svelte';
-  import {ConfigStore, CacheStore} from '../store.js';
-  import Status, {STATUS} from '../components/Status.svelte';
-  import {minutesReadable} from '../utils.js';
+  import {ConfigStore, CacheStore} from '@/store.js';
+  import Status, {STATUS} from '@/components/Status.svelte';
+  import {minutesReadable} from '@/utils.js';
 
   const CACHE_TIME = 600000; // 10 minutes
 

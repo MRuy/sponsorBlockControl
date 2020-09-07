@@ -1,8 +1,8 @@
 <script>
   import {onMount} from 'svelte';
-  import {ConfigStore, CacheStore} from '../store.js';
-  import {STATUS} from '../components/Status.svelte';
-  import {minutesReadable} from '../utils.js';
+  import {ConfigStore, CacheStore} from '@/store.js';
+  import {STATUS} from '@/components/Status.svelte';
+  import {minutesReadable} from '@/utils.js';
 
   export let privateUUID = '';
 
