@@ -1,5 +1,5 @@
 <script>
-  import {categoryList} from '@/config.js';
+  import {categoryList, categoryTiles} from '@/config.js';
   import {ConfigStore} from '@/store.js';
   import Status, {STATUS} from '@/components/Status.svelte';
 
@@ -82,7 +82,8 @@
                 type="checkbox"
                 bind:group={categories}
                 value={categoryId} />
-              <label for={'category_' + categoryId}>{categoryId}</label>
+              <label
+                for={'category_' + categoryId}>{categoryTiles[index]}</label>
             </div>
           {/each}
         </div>
