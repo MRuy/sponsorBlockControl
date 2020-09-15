@@ -31,15 +31,18 @@
 
   async function doAction() {
     status = STATUS.WORKING;
-    const postData = new FormData();
-    postData.set('videoID', videoID);
-    postData.set('userID', $ConfigStore.privateUUID);
-    postData.set('categories', JSON.stringify(categories));
+    const postData = {};
+    postData.videoID = videoID;
+    postData.userID = $ConfigStore.privateUUID;
+    postData.categories = categories;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
       {
         method: 'post',
-        body: postData,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData),
       }
     ).then(function (response) {
       return response.status;
