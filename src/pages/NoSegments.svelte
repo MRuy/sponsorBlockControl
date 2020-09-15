@@ -39,6 +39,9 @@
       `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
       {
         method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: postData,
       }
     ).then(function (response) {
