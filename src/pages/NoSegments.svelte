@@ -42,7 +42,7 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: postData,
+        body: JSON.stringify(postData),
       }
     ).then(function (response) {
       return response.status;
