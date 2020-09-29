@@ -73,6 +73,14 @@
       status = STATUS.ERROR_UNAUTHORIZED;
     }
   }
+
+  function toggleCheckboxes() {
+    if (categories.length === 0) {
+      categories = [...categoryList];
+    } else {
+      categories = [];
+    }
+  }
 </script>
 
 <main>
@@ -106,6 +114,7 @@
         </div>
 
         <div class="actions">
+          <button on:click={toggleCheckboxes}>Check all</button>
           <button
             on:click={doAction}
             disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Submit</button>
