@@ -7,6 +7,7 @@
   import PageGetTotalStats from '@/pages/GetTotalStats.svelte';
   import PageGetTopUsers from '@/pages/GetTopUsers.svelte';
   import PageVoteOnSponsorTime from '@/pages/VoteOnSponsorTime.svelte';
+  import PageCategoryChange from '@/pages/CategoryChange.svelte';
   import PageUsername from '@/pages/Username.svelte';
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
   import NoSegments from '@/pages/NoSegments.svelte';
@@ -35,6 +36,11 @@
     {
       name: 'Vote on segment',
       component: PageVoteOnSponsorTime,
+      uuidRequired: true,
+    },
+    {
+      name: 'Category change',
+      component: PageCategoryChange,
       uuidRequired: true,
     },
     {
