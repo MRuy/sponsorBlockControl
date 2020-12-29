@@ -11,6 +11,7 @@
   import PageUsername from '@/pages/Username.svelte';
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
   import NoSegments from '@/pages/NoSegments.svelte';
+  import WarnUser from './pages/WarnUser.svelte';
 
   const componentList = [
     {
@@ -51,6 +52,11 @@
     {
       name: 'Add/Remove Shadow ban',
       component: PageShadowBanUser,
+      uuidRequired: true,
+    },
+    {
+      name: 'Warn user',
+      component: WarnUser,
       uuidRequired: true,
     },
     {
