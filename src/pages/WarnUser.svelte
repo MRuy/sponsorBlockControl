@@ -7,12 +7,12 @@
   let userUUIDValid = false;
   let status = STATUS.IDLE;
 
-  async function doAction(action = 'ban') {
+  async function doAction(action = 'warn') {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
     postData.set('issuerUserID', $ConfigStore.privateUUID);
     postData.set('userID', userUUID);
-    postData.set('enabled', (action === 'ban').toString());
+    postData.set('enabled', (action === 'warn').toString());
     const result = await fetch(`${$ConfigStore.sponsorBlockApi}/api/warnUser`, {
       method: 'post',
       headers: {
