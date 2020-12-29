@@ -13,16 +13,13 @@
     postData.set('issuerUserID', $ConfigStore.privateUUID);
     postData.set('userID', userUUID);
     postData.set('enabled', (action === 'ban').toString());
-    const result = await fetch(
-      `${$ConfigStore.sponsorBlockApi}/api/warnUser`,
-      {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData)
-      }
-    ).then(function (response) {
+    const result = await fetch(`${$ConfigStore.sponsorBlockApi}/api/warnUser`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    }).then(function (response) {
       return response.status;
     });
     if (result === 200) {
@@ -55,7 +52,6 @@
             }}
             placeholder="Users UUID..." />
         </div>
-
 
         <div class="actions">
           <button
