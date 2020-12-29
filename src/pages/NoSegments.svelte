@@ -21,6 +21,20 @@
       if (url.host === 'youtu.be') {
         str = url.pathname.substring(1);
       }
+      if (url.host === 'sb.ltn.fi') {
+        if (url.pathname.includes('/video/')) {
+          const folders = url.pathname.split('/');
+          const videoIndex = folders.indexOf('video');
+          const videoIdIndex = videoIndex + 1;
+          if (videoIndex !== -1 && folders.length - 1 >= videoIdIndex) {
+            str = folders[videoIdIndex];
+          }
+        } else {
+          if (url.searchParams.has('videoid')) {
+            str = url.searchParams.get('videoid');
+          }
+        }
+      }
     }
     if (YT_VIDEOID_REGEXP.test(str)) {
       result = true;
@@ -40,7 +54,7 @@
       {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(postData),
       }
@@ -57,6 +71,14 @@
     }
     if (result === 403) {
       status = STATUS.ERROR_UNAUTHORIZED;
+    }
+  }
+
+  function toggleCheckboxes() {
+    if (categories.length === 0) {
+      categories = [...categoryList];
+    } else {
+      categories = [];
     }
   }
 </script>
@@ -92,6 +114,7 @@
         </div>
 
         <div class="actions">
+          <button on:click={toggleCheckboxes}>Check all</button>
           <button
             on:click={doAction}
             disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Submit</button>
