@@ -9,10 +9,10 @@
 
   async function doAction(action = 'warn') {
     status = STATUS.WORKING;
-    const postData = new URLSearchParams();
-    postData.set('issuerUserID', $ConfigStore.privateUUID);
-    postData.set('userID', userUUID);
-    postData.set('enabled', (action === 'warn').toString());
+    const postData = {};
+    postData.issuerUserID = $ConfigStore.privateUUID;
+    postData.userID = userUUID;
+    postData.enabled = (action === 'warn').toString();
     const result = await fetch(`${$ConfigStore.sponsorBlockApi}/api/warnUser`, {
       method: 'post',
       headers: {
