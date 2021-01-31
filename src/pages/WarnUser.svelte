@@ -12,7 +12,7 @@
     const postData = {};
     postData.issuerUserID = $ConfigStore.privateUUID;
     postData.userID = userUUID;
-    postData.enabled = (action === 'warn').toString();
+    postData.enabled = action === 'warn';
     const result = await fetch(`${$ConfigStore.sponsorBlockApi}/api/warnUser`, {
       method: 'post',
       headers: {
