@@ -7,7 +7,7 @@
   let status = STATUS.IDLE;
   let uuid = '';
   let uuidValid = false;
-  let selectedCategoryId;
+  let selectedCategoryId = '';
 
   async function doVote() {
     status = STATUS.WORKING;
@@ -26,6 +26,7 @@
     if (result === 200) {
       status = STATUS.SUCCESS;
       uuid = '';
+      uuidValid = false;
       selectedCategoryId = '';
     }
     if (result === 400) {
@@ -58,7 +59,7 @@
       <div>
         <label for="category">Category:</label><br />
         <select id="category" bind:value={selectedCategoryId}>
-          <option>--- Select category ---</option>
+          <option value="">--- Select category ---</option>
           {#each categoryList as categoryId, index}
             <option value={categoryId}>{categoryTiles[index]}</option>
           {/each}
