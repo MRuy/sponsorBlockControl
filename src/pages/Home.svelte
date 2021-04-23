@@ -1,7 +1,6 @@
 <script>
   import {ConfigStore, CacheStore} from '@/store.js';
-  import GetSavedTimeForUser from '@/components/GetSavedTimeForUser.svelte';
-  import GetViewsForUser from '@/components/GetViewsForUser.svelte';
+  import GetUserInfo from '@/components/GetUserInfo.svelte';
 
   let privateUUID = $ConfigStore.privateUUID;
   let privateUUIDGotSaved = false;
@@ -80,8 +79,7 @@
     </details>
 
     <p style="width:100%">
-      <GetViewsForUser privateUUID={$ConfigStore.privateUUID} /><br />
-      <GetSavedTimeForUser privateUUID={$ConfigStore.privateUUID} />
+      <GetUserInfo privateUUID={$ConfigStore.privateUUID} />
     </p>
   </div>
 </main>
