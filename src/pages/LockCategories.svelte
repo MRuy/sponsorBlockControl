@@ -8,6 +8,7 @@
   let categories = [];
   let videoID = '';
   let videoIDValid = false;
+  let stateLock = true;
   let status = STATUS.IDLE;
 
   function validateVideoID() {
@@ -43,12 +44,23 @@
     videoIDValid = result;
   }
 
+  async function lock() {
+    stateLock = true;
+    await doAction();
+  }
+
+  async function unlock() {
+    stateLock = false;
+    await doAction();
+  }
+
   async function doAction() {
     status = STATUS.WORKING;
     const postData = {};
     postData.videoID = videoID;
     postData.userID = $ConfigStore.privateUUID;
     postData.categories = categories;
+    postData.lock = stateLock;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
       {
@@ -87,7 +99,7 @@
   <div class="container">
     <p class="viprequired">Only users with VIP status can do this!</p>
     <fieldset>
-      <legend>No segments</legend>
+      <legend>Lock categories</legend>
       <div class="form" class:working={status === STATUS.WORKING}>
         <div>
           <label for="videoid">VideoID:</label><br />
@@ -115,9 +127,12 @@
 
         <div class="actions">
           <button on:click={toggleCheckboxes}>Check all</button>
+          <!--<button
+            on:click={unlock}
+            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Unlock</button>-->
           <button
-            on:click={doAction}
-            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Submit</button>
+            on:click={lock}
+            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Lock</button>
         </div>
       </div>
     </fieldset>

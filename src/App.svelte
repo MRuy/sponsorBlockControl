@@ -9,7 +9,7 @@
   import PageCategoryChange from '@/pages/CategoryChange.svelte';
   import PageUsername from '@/pages/Username.svelte';
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
-  import NoSegments from '@/pages/NoSegments.svelte';
+  import LockCategories from '@/pages/LockCategories.svelte';
   import WarnUser from './pages/WarnUser.svelte';
 
   const componentList = [
@@ -39,8 +39,8 @@
       uuidRequired: true,
     },
     {
-      name: 'No segments',
-      component: NoSegments,
+      name: 'Lock categories',
+      component: LockCategories,
       uuidRequired: true,
     },
     {
