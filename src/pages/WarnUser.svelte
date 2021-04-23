@@ -31,6 +31,9 @@
     if (result === 403) {
       status = STATUS.ERROR_UNAUTHORIZED;
     }
+    if (result === 409) {
+      status = STATUS.DUPLICATE;
+    }
   }
 </script>
 

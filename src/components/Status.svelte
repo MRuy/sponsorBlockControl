@@ -6,7 +6,7 @@
     NOT_FOUND: Symbol('error-404'),
     ERROR_INVALID: Symbol('error-invalid'),
     ERROR_UNAUTHORIZED: Symbol('error-unauthorized'),
-    STATUS_DUPLICATE: Symbol('duplicate'),
+    DUPLICATE: Symbol('duplicate'),
     PRIVATEUUID_MISSING: Symbol('private-uuid-missing'),
   };
 </script>
