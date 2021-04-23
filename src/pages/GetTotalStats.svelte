@@ -8,6 +8,7 @@
 
   let status = STATUS.IDLE;
   let stats = {
+    apiUsers: 0,
     userCount: 0,
     viewCount: 0,
     totalSubmissions: 0,
@@ -49,8 +50,8 @@
       <table class="stats-table">
         <tbody>
           <tr>
-            <th>Contributing Users:</th>
-            <td>{stats.userCount.toLocaleString()}</td>
+            <th>API Users:</th>
+            <td>{stats.apiUsers.toLocaleString()}</td>
           </tr>
           <tr>
             <th>Skip Count:</th>
