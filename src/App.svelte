@@ -5,7 +5,6 @@
   import Home from '@/pages/Home.svelte';
   import PageShadowBanUser from '@/pages/ShadowBanUser.svelte';
   import PageGetTotalStats from '@/pages/GetTotalStats.svelte';
-  import PageGetTopUsers from '@/pages/GetTopUsers.svelte';
   import PageVoteOnSponsorTime from '@/pages/VoteOnSponsorTime.svelte';
   import PageCategoryChange from '@/pages/CategoryChange.svelte';
   import PageUsername from '@/pages/Username.svelte';
@@ -27,11 +26,6 @@
     {
       name: 'Stats',
       component: PageGetTotalStats,
-      uuidRequired: false,
-    },
-    {
-      name: 'Leaderboard',
-      component: PageGetTopUsers,
       uuidRequired: false,
     },
     {
