@@ -8,7 +8,6 @@
   let categories = [];
   let videoID = '';
   let videoIDValid = false;
-  let stateLock = true;
   let status = STATUS.IDLE;
 
   function validateVideoID() {
@@ -44,27 +43,16 @@
     videoIDValid = result;
   }
 
-  async function lock() {
-    stateLock = true;
-    await doAction();
-  }
-
-  async function unlock() {
-    stateLock = false;
-    await doAction();
-  }
-
-  async function doAction() {
+  async function doAction(lock = true) {
     status = STATUS.WORKING;
     const postData = {};
     postData.videoID = videoID;
     postData.userID = $ConfigStore.privateUUID;
     postData.categories = categories;
-    postData.lock = stateLock;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
       {
-        method: 'post',
+        method: lock ? 'post' : 'delete',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -127,11 +115,11 @@
 
         <div class="actions">
           <button on:click={toggleCheckboxes}>Check all</button>
-          <!--<button
-            on:click={unlock}
-            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Unlock</button>-->
           <button
-            on:click={lock}
+            on:click={_ => doAction(false)}
+            disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Unlock</button>
+          <button
+            on:click={_ => doAction(true)}
             disabled={!videoIDValid || categories.length === 0 || status === STATUS.WORKING}>Lock</button>
         </div>
       </div>
