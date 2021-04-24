@@ -50,7 +50,7 @@
     postData.userID = $ConfigStore.privateUUID;
     postData.categories = categories;
     const result = await fetch(
-      `${$ConfigStore.sponsorBlockApi}/api/noSegments`,
+      `${$ConfigStore.sponsorBlockApi}/api/lockCategories`,
       {
         method: lock ? 'post' : 'delete',
         headers: {
