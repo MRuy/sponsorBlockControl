@@ -7,10 +7,10 @@
   let uuid = '';
   let uuidValid = false;
 
-  async function doVote(uuid, voteType = 0) {
+  async function doVote(segmentUUID, voteType = 0) {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
-    postData.set('UUID', uuid);
+    postData.set('UUID', segmentUUID);
     postData.set('userID', $ConfigStore.privateUUID);
     postData.set('type', voteType);
     const result = await fetch(
@@ -24,6 +24,7 @@
     if (result === 200) {
       status = STATUS.SUCCESS;
       uuid = '';
+      uuidValid = false;
     }
     if (result === 400) {
       status = STATUS.INVALID;
