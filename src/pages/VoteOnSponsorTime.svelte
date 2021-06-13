@@ -64,6 +64,11 @@
             doVote(uuid, 1);
           }}
           disabled={status === STATUS.WORKING || !uuidValid || status === STATUS.WORKING}>Upvote</button>
+        <button
+          on:click={(_) => {
+            doVote(uuid, 20);
+          }}
+          disabled={status === STATUS.WORKING || !uuidValid || status === STATUS.WORKING}>Undo Vote</button>
       </div>
     </fieldset>
 
