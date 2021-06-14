@@ -1,10 +1,12 @@
 <script>
+  import {categoryList, categoryTiles} from '@/config.js';
   import {ConfigStore} from '@/store.js';
   import {isValidUserUUID} from '@/utils.js';
   import Status, {STATUS} from '@/components/Status.svelte';
 
   let userUUID = '';
   let hideOldSubmissions = true;
+  let categories = [...categoryList];
   let userUUIDValid = false;
   let status = STATUS.IDLE;
 
@@ -15,6 +17,7 @@
     postData.set('userID', userUUID);
     postData.set('enabled', (action === 'ban').toString());
     postData.set('unHideOldSubmissions', hideOldSubmissions.toString());
+    postData.set('categories', JSON.stringify(categories));
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/shadowBanUser?${postData}`,
       {
@@ -60,6 +63,22 @@
             type="checkbox"
             bind:checked={hideOldSubmissions} />
           <label for="hideoldsubmissions">Hide/Restore old submissions</label>
+        </div>
+
+        <div 
+          hidden={!hideOldSubmissions}>
+          <div>Categories to hide:</div>
+          {#each categoryList as categoryId, index}
+            <div class="category-option">
+              <input
+                id={'category_' + categoryId}
+                type="checkbox"
+                bind:group={categories}
+                value={categoryId} />
+              <label
+                for={'category_' + categoryId}>{categoryTiles[index]}</label>
+            </div>
+          {/each}
         </div>
 
         <div class="actions">
