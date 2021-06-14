@@ -1,7 +1,7 @@
 <script>
   import {ConfigStore} from '@/store.js';
   import {isValidSegmentUUID} from '@/utils.js';
-  import {categoryList, categoryTiles} from '@/config.js';
+  import {categoryList, categoryTitles} from '@/config.js';
   import Status, {STATUS} from '@/components/Status.svelte';
 
   let status = STATUS.IDLE;
@@ -61,7 +61,7 @@
         <select id="category" bind:value={selectedCategoryId}>
           <option value="">--- Select category ---</option>
           {#each categoryList as categoryId, index}
-            <option value={categoryId}>{categoryTiles[index]}</option>
+            <option value={categoryId}>{categoryTitles[index]}</option>
           {/each}
         </select>
       </div>

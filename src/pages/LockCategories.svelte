@@ -1,5 +1,5 @@
 <script>
-  import {categoryList, categoryTiles} from '@/config.js';
+  import {categoryList, categoryTitles} from '@/config.js';
   import {ConfigStore} from '@/store.js';
   import Status, {STATUS} from '@/components/Status.svelte';
 
@@ -108,7 +108,7 @@
                 bind:group={categories}
                 value={categoryId} />
               <label
-                for={'category_' + categoryId}>{categoryTiles[index]}</label>
+                for={'category_' + categoryId}>{categoryTitles[index]}</label>
             </div>
           {/each}
         </div>
