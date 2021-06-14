@@ -66,7 +66,9 @@
         </div>
 
         <div
-          hidden={!hideOldSubmissions}>
+          class="categories-to-hide"
+          hidden={!hideOldSubmissions}
+        >
           <div>Categories to hide:</div>
           {#each categoryList as categoryId, index}
             <div class="category-option">
@@ -115,5 +117,11 @@
     height: 100%;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.3);
+  }
+  .categories-to-hide {
+    margin-left: 16px;
+  }
+  .category-option {
+    margin-left: 16px;
   }
 </style>
