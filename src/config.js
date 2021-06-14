@@ -7,7 +7,7 @@ export const categoryList = [
   'music_offtopic',
 ];
 
-export const categoryTiles = [
+export const categoryTitles = [
   'Sponsor',
   'Intermission/Intro Animation',
   'Endcards/Credits',
