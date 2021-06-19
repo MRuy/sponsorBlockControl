@@ -11,6 +11,7 @@
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
   import LockCategories from '@/pages/LockCategories.svelte';
   import WarnUser from './pages/WarnUser.svelte';
+  import ClearCache from './pages/ClearCache.svelte';
 
   const componentList = [
     {
@@ -51,6 +52,11 @@
     {
       name: 'Warn user',
       component: WarnUser,
+      uuidRequired: true,
+    },
+    {
+      name: "Clear cache",
+      component: ClearCache,
       uuidRequired: true,
     },
     {
