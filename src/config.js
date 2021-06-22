@@ -1,17 +1,19 @@
 export const categoryList = [
   'sponsor',
+  'selfpromo',
+  'interaction',
   'intro',
   'outro',
-  'interaction',
-  'selfpromo',
+  'preview',
   'music_offtopic',
 ];
 
 export const categoryTitles = [
   'Sponsor',
+  'Unpaid/Self Promotion',
+  'Interaction Reminder (Subscribe)',
   'Intermission/Intro Animation',
   'Endcards/Credits',
-  'Interaction Reminder (Subscribe)',
-  'Unpaid/Self Promotion',
+  'Preview/Recap',
   'Music: Non-Music Section',
 ];
