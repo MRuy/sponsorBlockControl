@@ -5,6 +5,7 @@
 
   let userUUID = '';
   let userUUIDValid = false;
+  let reason = '';
   let status = STATUS.IDLE;
 
   async function doAction(action = 'warn') {
@@ -12,6 +13,7 @@
     const postData = {};
     postData.issuerUserID = $ConfigStore.privateUUID;
     postData.userID = userUUID;
+    postData.reason = reason;
     postData.enabled = action === 'warn';
     const result = await fetch(`${$ConfigStore.sponsorBlockApi}/api/warnUser`, {
       method: 'post',
@@ -54,6 +56,14 @@
               userUUIDValid = isValidUserUUID(userUUID);
             }}
             placeholder="Users UUID..." />
+        </div>
+        <div>
+          <label for="reason">Warn Reason:</label><br />
+          <input
+            id="reason"
+            type="text"
+            bind:value={reason}
+            placeholder="Reason..." />
         </div>
 
         <div class="actions">
