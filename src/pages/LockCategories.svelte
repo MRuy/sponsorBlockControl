@@ -9,6 +9,7 @@
   let videoID = '';
   let videoIDValid = false;
   let status = STATUS.IDLE;
+  let reason = '';
 
   function validateVideoID() {
     let result = false;
@@ -48,6 +49,7 @@
     const postData = {};
     postData.videoID = videoID;
     postData.userID = $ConfigStore.privateUUID;
+    postData.reason = reason;
     postData.categories = categories;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/lockCategories`,
@@ -64,6 +66,7 @@
     if (result === 200) {
       status = STATUS.SUCCESS;
       videoID = '';
+      reason = '';
       categories = [];
     }
     if (result === 400) {
@@ -111,6 +114,14 @@
                 for={'category_' + categoryId}>{categoryTitles[index]}</label>
             </div>
           {/each}
+        </div>
+        <div>
+          <label for="reason">Lock Reason:</label><br />
+          <input
+            id="reason"
+            type="text"
+            bind:value={reason}
+            placeholder="Reason..." />
         </div>
 
         <div class="actions">
