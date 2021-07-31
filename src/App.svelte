@@ -55,7 +55,7 @@
       uuidRequired: true,
     },
     {
-      name: "Clear cache / Purge segments",
+      name: 'Clear cache / Purge segments',
       component: ClearCachePurgeSegments,
       uuidRequired: true,
     },
