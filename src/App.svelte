@@ -11,7 +11,7 @@
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
   import LockCategories from '@/pages/LockCategories.svelte';
   import WarnUser from './pages/WarnUser.svelte';
-  import ClearCache from './pages/ClearCache.svelte';
+  import ClearCachePurgeSegments from './pages/ClearCachePurgeSegments.svelte';
 
   const componentList = [
     {
@@ -55,8 +55,8 @@
       uuidRequired: true,
     },
     {
-      name: "Clear cache",
-      component: ClearCache,
+      name: "Clear cache / Purge segments",
+      component: ClearCachePurgeSegments,
       uuidRequired: true,
     },
     {

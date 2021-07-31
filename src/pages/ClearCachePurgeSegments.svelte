@@ -41,13 +41,38 @@
     videoIDValid = result;
   }
 
-  async function doAction(lock = true) {
+  async function doClearCache(lock = true) {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
     postData.set('videoID', videoID);
     postData.set('userID', $ConfigStore.privateUUID);
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/clearCache?${postData}`,
+      {
+        method: 'POST',
+      }
+    ).then(function (response) {
+      return response.status;
+    });
+    if (result === 200) {
+      status = STATUS.SUCCESS;
+      videoID = '';
+    }
+    if (result === 400) {
+      status = STATUS.ERROR_INVALID;
+    }
+    if (result === 403) {
+      status = STATUS.ERROR_UNAUTHORIZED;
+    }
+  }
+
+  async function doPurgeSegments() {
+    status = STATUS.WORKING;
+    const postData = new URLSearchParams();
+    postData.set('videoID', videoID);
+    postData.set('userID', $ConfigStore.privateUUID);
+    const result = await fetch(
+      `${$ConfigStore.sponsorBlockApi}/api/purgeAllSegments?${postData}`,
       {
         method: 'POST',
       }
@@ -85,8 +110,28 @@
 
         <div class="actions">
           <button
-            on:click={_ => doAction()}
+            on:click={_ => doClearCache()}
             disabled={!videoIDValid || status === STATUS.WORKING}>Clear</button>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Purge All Segments</legend>
+      <div class="form" class:working={status === STATUS.WORKING}>
+        <div>
+          <label for="videoid">VideoID:</label><br />
+          <input
+            id="videoid"
+            type="text"
+            bind:value={videoID}
+            on:input={validateVideoID}
+            placeholder="VideoID or URL..." />
+        </div>
+
+        <div class="actions">
+          <button
+            on:click={_ => doPurgeSegments()}
+            disabled={!videoIDValid || status === STATUS.WORKING}>Purge</button>
         </div>
       </div>
     </fieldset>
