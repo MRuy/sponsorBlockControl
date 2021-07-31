@@ -41,7 +41,7 @@
     videoIDValid = result;
   }
 
-  async function doAction(lock = true) {
+  async function doClearCache(lock = true) {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
     postData.set('videoID', videoID);
@@ -65,13 +65,38 @@
       status = STATUS.ERROR_UNAUTHORIZED;
     }
   }
+
+  async function doPurgeSegments() {
+    status = STATUS.WORKING;
+    const postData = new URLSearchParams();
+    postData.set('videoID', videoID);
+    postData.set('userID', $ConfigStore.privateUUID);
+    const result = await fetch(
+      `${$ConfigStore.sponsorBlockApi}/api/purgeAllSegments?${postData}`,
+      {
+        method: 'POST',
+      }
+    ).then(function (response) {
+      return response.status;
+    });
+    if (result === 200) {
+      status = STATUS.SUCCESS;
+      videoID = '';
+    }
+    if (result === 400) {
+      status = STATUS.ERROR_INVALID;
+    }
+    if (result === 403) {
+      status = STATUS.ERROR_UNAUTHORIZED;
+    }
+  }
 </script>
 
 <main>
   <div class="container">
     <p class="viprequired">Only users with VIP status can do this!</p>
     <fieldset>
-      <legend>Clear cache</legend>
+      <legend>Clear cache / Purge all segments</legend>
       <div class="form" class:working={status === STATUS.WORKING}>
         <div>
           <label for="videoid">VideoID:</label><br />
@@ -85,8 +110,12 @@
 
         <div class="actions">
           <button
-            on:click={_ => doAction()}
-            disabled={!videoIDValid || status === STATUS.WORKING}>Clear</button>
+            on:click={(_) => doClearCache()}
+            disabled={!videoIDValid || status === STATUS.WORKING}>Clear cache</button>
+          <button
+            on:click={(_) => doPurgeSegments()}
+            disabled={!videoIDValid || status === STATUS.WORKING}>Purge all
+            segments</button>
         </div>
       </div>
     </fieldset>
