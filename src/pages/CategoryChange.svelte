@@ -80,4 +80,11 @@
 </main>
 
 <style>
+  select {
+    color: #dee2e6;
+    border: 1px solid #6c757d;
+    border-radius: .25rem;
+    background-color: #000;
+    padding: .175rem .5rem;
+  }
 </style>
