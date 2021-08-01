@@ -1,4 +1,5 @@
-@charset utf8;
+@charset "utf8";
+
 * {
   box-sizing: border-box;
 }
@@ -15,7 +16,7 @@ body {
   padding: 16px;
 }
 
-input {
+input, textarea {
   color: #dee2e6;
   padding: .375rem .75rem;
   border: 1px solid #6c757d;

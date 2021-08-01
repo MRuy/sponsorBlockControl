@@ -59,11 +59,12 @@
         </div>
         <div>
           <label for="reason">Warn Reason:</label><br />
-          <input
+          <textarea
             id="reason"
-            type="text"
+            cols="80"
+            rows="3"
             bind:value={reason}
-            placeholder="Reason..." />
+            placeholder="Reason..."></textarea>
         </div>
 
         <div class="actions">
