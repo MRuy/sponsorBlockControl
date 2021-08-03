@@ -68,13 +68,17 @@
 
   async function doPurgeSegments() {
     status = STATUS.WORKING;
-    const postData = new URLSearchParams();
-    postData.set('videoID', videoID);
-    postData.set('userID', $ConfigStore.privateUUID);
+    const postData = {};
+    postData.videoID = videoID;
+    postData.userID = $ConfigStore.privateUUID;
     const result = await fetch(
-      `${$ConfigStore.sponsorBlockApi}/api/purgeAllSegments?${postData}`,
+      `${$ConfigStore.sponsorBlockApi}/api/purgeAllSegments`,
       {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData),
       }
     ).then(function (response) {
       return response.status;
