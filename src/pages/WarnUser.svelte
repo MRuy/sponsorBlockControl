@@ -26,6 +26,9 @@
     });
     if (result === 200) {
       status = STATUS.SUCCESS;
+      userUUID = '';
+      userUUIDValid = false;
+      reason = '';
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
@@ -55,7 +58,7 @@
             on:input={(_) => {
               userUUIDValid = isValidUserUUID(userUUID);
             }}
-            placeholder="Users UUID..." />
+            placeholder="User UUID..." />
         </div>
         <div>
           <label for="reason">Warn Reason:</label><br />
