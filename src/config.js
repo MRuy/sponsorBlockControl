@@ -6,6 +6,7 @@ export const categoryList = [
   'outro',
   'preview',
   'music_offtopic',
+  'poi_highlight'
 ];
 
 export const categoryTitles = [
@@ -16,4 +17,5 @@ export const categoryTitles = [
   'Endcards/Credits',
   'Preview/Recap',
   'Music: Non-Music Section',
+  'Highlight'
 ];
