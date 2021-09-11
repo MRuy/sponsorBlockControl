@@ -24,6 +24,39 @@ input, textarea {
   background-color: #000;
 }
 
+button {
+  padding: 5px 10px;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background: #909ca7;
+}
+button:disabled {
+  color: #828282;
+  background: #4d545a;
+  cursor: default;
+}
+
+input,
+textarea,
+button,
+select {
+  accent-color: #f60c02;
+}
+
+::selection {
+  color: #fff;
+  background: #f60a028e;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   flex-direction: column;
