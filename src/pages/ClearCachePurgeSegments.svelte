@@ -78,10 +78,10 @@
         <div class="actions">
           <button
             on:click={(_) => doClearCache()}
-            disabled={status === STATUS.WORKING}>Clear cache</button>
+            disabled={videoID.length === 0 || status === STATUS.WORKING}>Clear cache</button>
           <button
             on:click={(_) => doPurgeSegments()}
-            disabled={status === STATUS.WORKING}>Purge all
+            disabled={videoID.length === 0 || status === STATUS.WORKING}>Purge all
             segments</button>
         </div>
       </div>
