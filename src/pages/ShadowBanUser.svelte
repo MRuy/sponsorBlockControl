@@ -10,6 +10,10 @@
   let userUUIDValid = false;
   let status = STATUS.IDLE;
 
+  $: {
+    userUUIDValid = isValidUserUUID(userUUID);
+  }
+
   async function doAction(action = 'ban') {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
@@ -51,9 +55,6 @@
             type="text"
             bind:value={userUUID}
             size="64"
-            on:input={(_) => {
-              userUUIDValid = isValidUserUUID(userUUID);
-            }}
             placeholder="Users UUID..." />
         </div>
 

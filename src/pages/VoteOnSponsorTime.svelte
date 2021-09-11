@@ -7,6 +7,10 @@
   let uuid = '';
   let uuidValid = false;
 
+  $: {
+    uuidValid = isValidSegmentUUID(uuid);
+  }
+
   async function doVote(segmentUUID, voteType = 0) {
     status = STATUS.WORKING;
     const postData = new URLSearchParams();
@@ -24,7 +28,6 @@
     if (result === 200) {
       status = STATUS.SUCCESS;
       uuid = '';
-      uuidValid = false;
     }
     if (result === 400) {
       status = STATUS.INVALID;
@@ -47,9 +50,6 @@
           size="64"
           bind:value={uuid}
           pattern="[a-f0-9]{'{64}'}"
-          on:input={(_) => {
-            uuidValid = isValidSegmentUUID(uuid);
-          }}
           placeholder="Segment UUID ..."
           disabled={status === STATUS.WORKING} />
       </div>

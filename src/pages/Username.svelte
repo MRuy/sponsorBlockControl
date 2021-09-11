@@ -84,7 +84,7 @@
             await setUsername($ConfigStore.privateUUID, userName);
             await loadUsername();
           }}
-          disabled={userName.length == 0}>Save</button>
+          disabled={userName.length == 0}>Change</button>
       </fieldset>
 
       <fieldset>
@@ -119,8 +119,6 @@
     display: flex;
     gap: 16px;
     position: relative;
-  }
-  fieldset {
   }
   .working:after {
     content: '';

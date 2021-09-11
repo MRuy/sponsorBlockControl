@@ -4,9 +4,12 @@
   import Status, {STATUS} from '@/components/Status.svelte';
 
   let userUUID = '';
-  let action = 'add';
   let userUUIDValid = false;
   let status = STATUS.IDLE;
+
+  $: {
+    userUUIDValid = isValidUserUUID(userUUID);
+  }
 
   function addVIP() {
     doAction('add');
@@ -54,9 +57,6 @@
             id="uuid"
             type="text"
             bind:value={userUUID}
-            on:input={(_) => {
-              userUUIDValid = isValidUserUUID(userUUID);
-            }}
             size="64"
             placeholder="Users UUID..." />
         </div>

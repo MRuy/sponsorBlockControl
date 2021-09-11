@@ -1,45 +1,10 @@
 <script>
   import {ConfigStore} from '@/store.js';
   import Status, {STATUS} from '@/components/Status.svelte';
+  import VideoInput from '@/components/VideoInput.svelte';
 
-  // Regexp from https://webapps.stackexchange.com/a/101153
-  const YT_VIDEOID_REGEXP = new RegExp('^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]$');
   let videoID = '';
-  let videoIDValid = false;
   let status = STATUS.IDLE;
-
-  function validateVideoID() {
-    let result = false;
-    let str = videoID;
-    if (str.includes('http')) {
-      const url = new URL(str);
-      if (url.searchParams.has('v')) {
-        str = url.searchParams.get('v');
-      }
-      if (url.host === 'youtu.be') {
-        str = url.pathname.substring(1);
-      }
-      if (url.host === 'sb.ltn.fi') {
-        if (url.pathname.includes('/video/')) {
-          const folders = url.pathname.split('/');
-          const videoIndex = folders.indexOf('video');
-          const videoIdIndex = videoIndex + 1;
-          if (videoIndex !== -1 && folders.length - 1 >= videoIdIndex) {
-            str = folders[videoIdIndex];
-          }
-        } else {
-          if (url.searchParams.has('videoid')) {
-            str = url.searchParams.get('videoid');
-          }
-        }
-      }
-    }
-    if (YT_VIDEOID_REGEXP.test(str)) {
-      result = true;
-      videoID = str;
-    }
-    videoIDValid = result;
-  }
 
   async function doClearCache(lock = true) {
     status = STATUS.WORKING;
@@ -104,21 +69,19 @@
       <div class="form" class:working={status === STATUS.WORKING}>
         <div>
           <label for="videoid">VideoID:</label><br />
-          <input
+          <VideoInput
             id="videoid"
-            type="text"
             bind:value={videoID}
-            on:input={validateVideoID}
-            placeholder="VideoID or URL..." />
+          />
         </div>
 
         <div class="actions">
           <button
             on:click={(_) => doClearCache()}
-            disabled={!videoIDValid || status === STATUS.WORKING}>Clear cache</button>
+            disabled={status === STATUS.WORKING}>Clear cache</button>
           <button
             on:click={(_) => doPurgeSegments()}
-            disabled={!videoIDValid || status === STATUS.WORKING}>Purge all
+            disabled={status === STATUS.WORKING}>Purge all
             segments</button>
         </div>
       </div>
