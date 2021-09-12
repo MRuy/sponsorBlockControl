@@ -17,7 +17,7 @@ export const isValidUserUUID = (str) => {
 };
 
 export const isValidSegmentUUID = (str) => {
-  return /^([a-f0-9]{64}|[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{12})$/.test(
+  return /^([a-f0-9]{64,65}|[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{12})$/.test(
     str
   );
 };
