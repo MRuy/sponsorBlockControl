@@ -11,6 +11,7 @@
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
   import LockCategories from '@/pages/LockCategories.svelte';
   import WarnUser from './pages/WarnUser.svelte';
+  import UserInfo from './pages/UserInfo.svelte';
   import ClearCachePurgeSegments from './pages/ClearCachePurgeSegments.svelte';
 
   const websiteName = 'SponsorBlockControl';
@@ -79,6 +80,12 @@
       title: 'Add/Remove VIP',
       component: AddUserAsVIP,
       uuidRequired: true,
+    },
+    {
+      name: 'userinfo',
+      title: 'User Info',
+      component: UserInfo,
+      uuidRequired: false,
     },
   ];
 
