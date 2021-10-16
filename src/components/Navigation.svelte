@@ -10,11 +10,11 @@
     <button
       type="button"
       class:active={selected === item.component}
-      disabled={item.uuidRequired === true && $ConfigStore.privateUUID === ''}
+      disabled={(item.uuidRequired === true && $ConfigStore.privateUUID === '') || item?.requiresVIP === true}
       on:click={(_) => {
         clickHandler(item.name);
       }}>
-      {item.name}
+      {item.title}
     </button>
   {/each}
 </nav>

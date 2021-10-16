@@ -13,64 +13,98 @@
   import WarnUser from './pages/WarnUser.svelte';
   import ClearCachePurgeSegments from './pages/ClearCachePurgeSegments.svelte';
 
+  const websiteName = 'SponsorBlockControl';
+
   const componentList = [
     {
-      name: 'Home',
+      name: 'home',
+      title: 'Home',
       component: Home,
       uuidRequired: false,
     },
     {
-      name: 'Username',
+      name: 'username',
+      title: 'Username',
       component: PageUsername,
       uuidRequired: true,
     },
     {
-      name: 'Stats',
+      name: 'stats',
+      title: 'Stats',
       component: PageGetTotalStats,
       uuidRequired: false,
     },
     {
-      name: 'Vote on segment',
+      name: 'voteonsegment',
+      title: 'Vote on segment',
       component: PageVoteOnSponsorTime,
       uuidRequired: true,
     },
     {
-      name: 'Category change',
+      name: 'categorychange',
+      title: 'Category change',
       component: PageCategoryChange,
       uuidRequired: true,
     },
     {
-      name: 'Lock categories',
+      name: 'lockcategories',
+      title: 'Lock categories',
       component: LockCategories,
       uuidRequired: true,
+      requiresVIP: true,
     },
     {
-      name: 'Add/Remove Shadow ban',
+      name: 'shadowban',
+      title: 'Add/Remove Shadow ban',
       component: PageShadowBanUser,
       uuidRequired: true,
+      requiresVIP: true,
     },
     {
-      name: 'Warn user',
+      name: 'warnuser',
+      title: 'Warn user',
       component: WarnUser,
       uuidRequired: true,
+      requiresVIP: true,
     },
     {
-      name: 'Clear cache / Purge segments',
+      name: 'cachepurge',
+      title: 'Clear cache / Purge segments',
       component: ClearCachePurgeSegments,
       uuidRequired: true,
+      requiresVIP: true,
     },
     {
-      name: 'Add/Remove VIP',
+      name: 'vip',
+      title: 'Add/Remove VIP',
       component: AddUserAsVIP,
       uuidRequired: true,
     },
   ];
-  let selectedComponent = componentList[0].component;
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  let GETPARAM_page = 'home';
+  if (urlParams.has('page')) {
+    const page = urlParams.get('page');
+    if (componentList.some((item) => item.name === page)) {
+      GETPARAM_page = page;
+    }
+  }
+  let selectedComponent;
+
+  selectComponent(GETPARAM_page);
 
   function selectComponent(name) {
     const result = componentList.find((item) => item.name === name);
     if (result) {
       selectedComponent = result.component;
+      const url = new URL(window.location);
+      const title = `${result.title} • ${websiteName}`;
+      url.searchParams.set('page', name);
+      window.history.pushState({}, title, url);
+      document.title = title;
     }
   }
 </script>
