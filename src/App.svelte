@@ -9,6 +9,7 @@
   import PageCategoryChange from '@/pages/CategoryChange.svelte';
   import PageUsername from '@/pages/Username.svelte';
   import AddUserAsVIP from '@/pages/AddUserAsVIP.svelte';
+  import AddUserAsTempVIP from '@/pages/AddUserAsTempVIP.svelte';
   import LockCategories from '@/pages/LockCategories.svelte';
   import WarnUser from './pages/WarnUser.svelte';
   import UserInfo from './pages/UserInfo.svelte';
@@ -80,6 +81,13 @@
       title: 'Add/Remove VIP',
       component: AddUserAsVIP,
       uuidRequired: true,
+    },
+    {
+      name: 'tempvip',
+      title: 'Add/Remove Temporary VIP',
+      component: AddUserAsTempVIP,
+      uuidRequired: true,
+      requiresVIP: true,
     },
     {
       name: 'userinfo',
