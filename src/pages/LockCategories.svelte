@@ -5,7 +5,7 @@
   import VideoInput from '@/components/VideoInput.svelte';
 
   let categories = [];
-  let actionTypes = ['skip', 'mute'];
+  let actionTypes = [...actionTypeList];
   let videoID = '';
   let status = STATUS.IDLE;
   let reason = '';
@@ -35,7 +35,7 @@
       videoID = '';
       reason = '';
       categories = [];
-      actionTypes = ['skip', 'mute'];
+      actionTypes = [...actionTypeList];
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
