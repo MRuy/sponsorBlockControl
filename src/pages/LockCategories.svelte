@@ -1,10 +1,11 @@
 <script>
-  import {categoryList, categoryTitles} from '@/config.js';
+  import {categoryList, categoryTitles, actionTypeList, actionTypeTitles} from '@/config.js';
   import {ConfigStore} from '@/store.js';
   import Status, {STATUS} from '@/components/Status.svelte';
   import VideoInput from '@/components/VideoInput.svelte';
 
   let categories = [];
+  let actionTypes = [...actionTypeList];
   let videoID = '';
   let status = STATUS.IDLE;
   let reason = '';
@@ -16,6 +17,7 @@
     postData.userID = $ConfigStore.privateUUID;
     postData.reason = reason;
     postData.categories = categories;
+    postData.actionTypes = actionTypes;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/lockCategories`,
       {
@@ -33,6 +35,7 @@
       videoID = '';
       reason = '';
       categories = [];
+      actionTypes = [...actionTypeList];
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
@@ -75,6 +78,18 @@
                 value={categoryId} />
               <label
                 for={'category_' + categoryId}>{categoryTitles[index]}</label>
+            </div>
+          {/each}
+          <div>Action Types:</div>
+          {#each actionTypeList as actionTypeId, index}
+            <div class="actionType-option">
+              <input
+                id={'actionType_' + actionTypeId}
+                type="checkbox"
+                bind:group={actionTypes}
+                value={actionTypeId} />
+              <label
+                for={'actionType_' + actionTypeId}>{actionTypeTitles[index]}</label>
             </div>
           {/each}
         </div>

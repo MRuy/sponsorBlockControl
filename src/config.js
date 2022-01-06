@@ -21,3 +21,15 @@ export const categoryTitles = [
   'Highlight',
   'Filler Tangent'
 ];
+
+export const actionTypeList = [
+  'skip',
+  'mute',
+  'full'
+];
+
+export const actionTypeTitles = [
+  'Skip',
+  'Mute',
+  'Full Video'
+];
