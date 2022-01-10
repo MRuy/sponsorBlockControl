@@ -4,6 +4,8 @@
   import Status, {STATUS} from '@/components/Status.svelte';
   import VideoInput from '@/components/VideoInput.svelte';
 
+  const defaultChecked = [...categoryList.filter((e) => !['poi_highlight', 'filler'].includes(e))];
+
   let categories = [];
   let actionTypes = [...actionTypeList];
   let videoID = '';
@@ -47,7 +49,7 @@
 
   function toggleCheckboxes() {
     if (categories.length === 0) {
-      categories = [...categoryList];
+      categories = [...defaultChecked];
     } else {
       categories = [];
     }
