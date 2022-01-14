@@ -7,7 +7,8 @@ export const categoryList = [
   'preview',
   'music_offtopic',
   'poi_highlight',
-  'filler'
+  'filler',
+  'exclusive_access'
 ];
 
 export const categoryTitles = [
@@ -19,7 +20,8 @@ export const categoryTitles = [
   'Preview/Recap',
   'Music: Non-Music Section',
   'Highlight',
-  'Filler Tangent'
+  'Filler Tangent',
+  'Exclusive Access'
 ];
 
 export const actionTypeList = [

@@ -4,7 +4,7 @@
   import Status, {STATUS} from '@/components/Status.svelte';
   import VideoInput from '@/components/VideoInput.svelte';
 
-  const defaultChecked = [...categoryList.filter((e) => !['poi_highlight', 'filler'].includes(e))];
+  const defaultChecked = [...categoryList.filter((e) => !['poi_highlight', 'filler', 'exclusive_access'].includes(e))];
 
   let categories = [];
   let actionTypes = [...actionTypeList];
