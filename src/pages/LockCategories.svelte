@@ -37,7 +37,7 @@
       videoID = '';
       reason = '';
       categories = [];
-      actionTypes = [...actionTypeList];
+      actionTypes = [...actionTypeList, 'poi'];
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
