@@ -19,7 +19,7 @@
     postData.userID = $ConfigStore.privateUUID;
     postData.reason = reason;
     postData.categories = categories;
-    postData.actionTypes = actionTypes;
+    postData.actionTypes = [...actionTypes, 'poi'];
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/lockCategories`,
       {
@@ -37,7 +37,7 @@
       videoID = '';
       reason = '';
       categories = [];
-      actionTypes = [...actionTypeList, 'poi'];
+      actionTypes = [...actionTypeList];
     }
     if (result === 400) {
       status = STATUS.ERROR_INVALID;
