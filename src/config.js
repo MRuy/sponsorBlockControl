@@ -27,11 +27,13 @@ export const categoryTitles = [
 export const actionTypeList = [
   'skip',
   'mute',
-  'full'
+  'full',
+  'poi'
 ];
 
 export const actionTypeTitles = [
   'Skip',
   'Mute',
-  'Full Video'
+  'Full Video',
+  'Point of Interest'
 ];
