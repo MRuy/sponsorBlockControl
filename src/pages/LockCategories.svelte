@@ -19,7 +19,7 @@
     postData.userID = $ConfigStore.privateUUID;
     postData.reason = reason;
     postData.categories = categories;
-    postData.actionTypes = actionTypes
+    postData.actionTypes = actionTypes;
     const result = await fetch(
       `${$ConfigStore.sponsorBlockApi}/api/lockCategories`,
       {
