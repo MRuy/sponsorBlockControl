@@ -37,3 +37,14 @@ export const actionTypeTitles = [
   'Full Video',
   'Point of Interest'
 ];
+
+export const features = [
+  {
+    name: "Chapter",
+    code: 0
+  },
+  {
+    name: 'Filler Tangent',
+    code: 1
+  }
+];
