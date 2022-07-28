@@ -14,6 +14,7 @@
   import WarnUser from './pages/WarnUser.svelte';
   import UserInfo from './pages/UserInfo.svelte';
   import ClearCachePurgeSegments from './pages/ClearCachePurgeSegments.svelte';
+  import AddUserFeature from './pages/AddUserFeature.svelte';
 
   const websiteName = 'SponsorBlockControl';
 
@@ -94,6 +95,13 @@
       title: 'User Info',
       component: UserInfo,
       uuidRequired: false,
+    },
+    {
+      name: 'adduserfeature',
+      title: 'Add User Feature',
+      component: AddUserFeature,
+      uuidRequired: true,
+      requiresVIP: true,
     },
   ];
 
