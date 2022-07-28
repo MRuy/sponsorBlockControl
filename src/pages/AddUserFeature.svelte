@@ -84,7 +84,7 @@
           on:click={(_) => {
             addFeature();
           }}
-          disabled={status === STATUS.WORKING || !userIDValid || status === STATUS.WORKING}>Add feature</button>
+          disabled={status === STATUS.WORKING || !userIDValid}>Add feature</button>
       </div>
     </fieldset>
 
